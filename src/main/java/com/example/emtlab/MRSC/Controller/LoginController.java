@@ -17,8 +17,7 @@ public class LoginController {
     public User login(HttpServletRequest request, @RequestParam String username, @RequestParam String password) {
         User user = null;
 
-        user = this.authService.login(request.getParameter("username"),
-                request.getParameter("password"));
+        user = this.authService.login(username, password);
         request.getSession().setAttribute("user", user);
 
         return user;
