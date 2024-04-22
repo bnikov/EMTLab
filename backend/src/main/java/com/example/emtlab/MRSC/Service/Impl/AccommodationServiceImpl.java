@@ -41,6 +41,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 
         accommodation.setHost(host);
         accommodation.setNumRooms(numRooms);
+        accommodation.setRented(false);
         return Optional.of(accommodationRepository.save(accommodation));
     }
 
@@ -64,16 +65,19 @@ public class AccommodationServiceImpl implements AccommodationService {
         Accommodation accommodation = accommodationRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
 
-        Integer numRooms = accommodation.getNumRooms();
+        boolean rented = accommodation.isRented();
+        accommodation.setRented(!rented);
 
-        if (numRooms > 0) {
-            numRooms -= 1;
-        } else {
-            throw new NoMoreRoomsException();
-        }
+        // ne znam sto se bara
 
-        accommodation.setNumRooms(numRooms);
-
+//
+//        if (numRooms > 0) {
+//            numRooms -= 1;
+//        } else {
+//            throw new NoMoreRoomsException();
+//        }
+//
+//        accommodation.setNumRooms(numRooms);
         return Optional.of(accommodationRepository.save(accommodation));
     }
 

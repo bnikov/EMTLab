@@ -22,4 +22,6 @@ public class Accommodation {
     private Host host;
 
     private Integer numRooms;
+
+    private boolean rented;
 }
